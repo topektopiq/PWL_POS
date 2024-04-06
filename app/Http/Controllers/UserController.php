@@ -28,21 +28,21 @@ class UserController extends Controller
         
         // Not Found Exceptions
         // $user = UserModel::findOrFail(1);
-        // $user = UserModel::where('username', 'manager9')->firstOrFail();
+        $user = UserModel::where('username', 'manager9')->firstOrFail();
         
         // Retrieving Aggregrates
         // $user = UserModel::where('level_id', 2)->count();
         // dd($user);            
         
         // Retreiving or Creating Models
-        // $user = UserModel::create(
-        //     [
-        //         'username' => 'manager11',
-        //         'nama' => 'Manager11',
-        //         'password' => Hash::make('12345'),
-        //         'level_id' => 2
-        //     ]
-        // );
+        $user = UserModel::create(
+            [
+                'username' => 'manager11',
+                'nama' => 'Manager11',
+                'password' => Hash::make('12345'),
+                'level_id' => 2
+            ]
+        );
 
         // $user->username = 'manager12';
 

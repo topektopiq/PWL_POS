@@ -60,6 +60,12 @@ class KategoriController extends Controller
         return redirect('/kategori');
     }
 
+    public function delete($id){
+        $category = KategoriModel::find($id);
+        $category->delete();
+        return redirect('/kategori');
+    }
+
 
 
 }

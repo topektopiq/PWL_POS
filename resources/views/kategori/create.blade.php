@@ -26,14 +26,14 @@
             <form method="post" action="../kategori">
                 <div class="card=body">
                     <div class="form-group">
-                        <label for="kodeKategori">Kode Kategori</label>
+                        <label for="kategori_kode">Kode Kategori</label>
                         <input type="text" class="form-control @error('kategori_kode') is-invalid @enderror" id="kategori_kode" name="kategori_kode" placeholder="Misal K001">
                         @error('kategori_kode')
                             <div class="alert alert-danger">{{$message}}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="namaKategori">Nama Kategori</label>
+                        <label for="kategori_nama">Nama Kategori</label>
                         <input type="text" class="form-control" id="kategori_nama" name="kategori_nama" placeholder="Misal Minuman">
                     </div>
                     

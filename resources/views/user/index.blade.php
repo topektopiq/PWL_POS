@@ -8,14 +8,19 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped table-hover table-sm" id="table_user">
+            @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+            <table class="table table-bordered table-striped table-hover table-sm" id="user_id">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Username</th>
                         <th>Nama</th>
-                        <th>Level
-                            Pengguna</th>
+                        <th>Level Pengguna</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -24,4 +29,44 @@
     </div>
 @endsection
 @push('css')
+@endpush
+@push('js')
+    <script>
+        $(document).ready(function() {
+            var dataUser = $('#user_id').DataTable({
+                serverSide: true, // serverSide: true, jika ingin menggunakan server side processing
+                ajax: {
+                    "url": "{{ url('user/list') }}",
+                    "dataType": "json",
+                    "type": "POST"
+                },
+                columns: [{
+                    data: "DT_RowIndex", // nomor urut dari laravel datatable addIndexColumn()
+                    className: "text-center",
+                    orderable: false,
+                    searchable: false
+                }, {
+                    data: "username",
+                    className: "",
+                    orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
+                    searchable: true // searchable: true, jika ingin kolom ini bisa dicari
+                }, {
+                    data: "nama",
+                    className: "",
+                    orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
+                    searchable: true // searchable: true, jika ingin kolom ini bisa dicari
+                }, {
+                    data: "level.level_nama",
+                    className: "",
+                    orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
+                    searchable: false // searchable: true, jika ingin kolom ini bisa dicari
+                }, {
+                    data: "aksi",
+                    className: "",
+                    orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
+                    searchable: false // searchable: true, jika ingin kolom ini bisa dicari
+                }]
+            });
+        });
+    </script>
 @endpush

@@ -25,13 +25,19 @@ class UserController extends Controller
 
         $activeMenu = 'user';
 
-        return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        $level = LevelModel::all();
+
+        return view('user.index', ['breadcrumb' => $breadcrumb, 'level' => $level, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     // Ambil data user dalam bentuk json untuk datatables
     public function list(Request $request)
     {
         $users = UserModel::select('user_id', 'username', 'nama', 'level_id')->with('level');
+        // Filter data user berdasarkan level_id
+        if ($request->level_id) {
+            $users->where('level_id', $request->level_id);
+        }
         return DataTables::of($users)->addIndexColumn() // menambahkan kolom index / no urut (default namakolom: DT_RowIndex)
             ->addColumn('aksi', function ($user) { // menambahkan kolom aksi
                 $btn = '<a href="' . url('/user/' . $user->user_id) . '" class="btn btn info btn-sm">Detail</a> ';

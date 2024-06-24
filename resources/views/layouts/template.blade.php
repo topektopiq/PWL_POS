@@ -19,6 +19,12 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+    {{-- <style>
+        tbody > tr {
+            background-color: #121212;
+        }
+    </style> --}}
 
     @stack('css')
 </head>
